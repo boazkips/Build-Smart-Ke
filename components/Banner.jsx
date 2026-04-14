@@ -14,7 +14,7 @@ const Banner = () => {
             Grow Your Business on<br />Build Smart Ke
           </h2>
           <p className="text-white/70 text-sm max-w-sm">
-            Join Kenya's fastest-growing construction marketplace. List your products, reach thousands of builders, and get paid securely via M-Pesa or PayPal.
+            Join Kenya's fastest-growing construction marketplace. List your products, reach thousands of builders, and get paid securely via M-Pesa or PesaPal.
           </p>
           <div className="flex gap-3 pt-2 flex-wrap justify-center md:justify-start">
             <Link href="/seller/onboarding">

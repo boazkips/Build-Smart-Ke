@@ -192,7 +192,7 @@ const Product = () => {
                             <div className="flex items-center gap-2 text-xs text-gray-400 mt-1">
                                 <span>Pay via:</span>
                                 <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded font-medium">M-Pesa</span>
-                                <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-medium">PayPal</span>
+                                <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-medium">PesaPal</span>
                                 <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-medium">COD</span>
                             </div>
                         </div>

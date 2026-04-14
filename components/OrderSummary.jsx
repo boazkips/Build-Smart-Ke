@@ -4,9 +4,9 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const PAYMENT_METHODS = [
-    { id: 'mpesa', label: 'M-Pesa', icon: '📱', desc: 'Pay via STK Push' },
-    { id: 'paypal', label: 'PayPal', icon: '🌐', desc: 'Pay online securely' },
-    { id: 'cod', label: 'Cash on Delivery', icon: '💵', desc: 'Pay when delivered' },
+    { id: 'mpesa',    label: 'M-Pesa',           icon: '📱', desc: 'Lipa Na M-Pesa STK Push' },
+    { id: 'pesapal',  label: 'PesaPal',           icon: '💳', desc: 'Card, M-Pesa & more via PesaPal' },
+    { id: 'cod',      label: 'Cash on Delivery',  icon: '💵', desc: 'Pay when delivered to site' },
 ];
 
 const OrderSummary = () => {
@@ -68,11 +68,22 @@ const OrderSummary = () => {
                 } else {
                     toast.error(mpesaRes.data.message || 'M-Pesa request failed')
                 }
-            } else if (paymentMethod === 'paypal') {
-                toast.success('Order created! Redirecting to PayPal...')
-                // PayPal redirect — order ID passed as query param
-                window.location.href = `/api/payment/paypal?orderId=${data.orderId}`
-                return
+            } else if (paymentMethod === 'pesapal') {
+                const pesapalRes = await axios.post('/api/payment/pesapal', {
+                    orderId: data.orderId,
+                    amount: getCartAmount() + Math.floor(getCartAmount() * 0.02),
+                    description: `Build Smart Ke Order #${data.orderId?.slice(-8)}`,
+                }, { headers: { Authorization: `Bearer ${token}` } })
+
+                if (pesapalRes.data.success && pesapalRes.data.redirectUrl) {
+                    toast.success('Redirecting to PesaPal...')
+                    window.location.href = pesapalRes.data.redirectUrl
+                    return
+                } else {
+                    toast.error(pesapalRes.data.message || 'PesaPal initiation failed')
+                    setLoading(false)
+                    return
+                }
             } else {
                 toast.success('Order placed! Pay on delivery.')
             }

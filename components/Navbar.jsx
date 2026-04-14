@@ -6,6 +6,10 @@ import { useAppContext } from "@/context/AppContext";
 import Image from "next/image";
 import { useClerk, UserButton } from "@clerk/nextjs";
 
+const BSLogo = ({ className = "h-10 w-auto" }) => (
+  <Image src="/buildsmart-logo.jpeg" alt="Build Smart Kenya" width={160} height={48} className={className} priority />
+);
+
 const Navbar = () => {
   const { isSeller, router, user } = useAppContext();
   const { openSignIn } = useClerk()
@@ -33,13 +37,8 @@ const Navbar = () => {
       {/* Main nav */}
       <nav className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-200">
         {/* Logo */}
-        <button onClick={() => router.push('/')} className="flex items-center gap-2 shrink-0">
-          <div className="bg-[#1e3a5f] text-white font-bold text-lg px-3 py-1.5 rounded">
-            Build<span className="text-orange-500">Smart</span>
-          </div>
-          <span className="hidden sm:block text-xs text-gray-500 font-medium leading-tight">
-            Kenya's<br />Construction Marketplace
-          </span>
+        <button onClick={() => router.push('/')} className="flex items-center shrink-0">
+          <BSLogo className="h-10 w-auto" />
         </button>
 
         {/* Search bar — desktop */}

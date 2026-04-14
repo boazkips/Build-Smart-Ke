@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -19,7 +20,7 @@ const Footer = () => {
           </div>
           <div className="flex flex-col items-center gap-1">
             <span className="text-2xl">📱</span>
-            <p className="font-medium">M-Pesa & PayPal</p>
+            <p className="font-medium">M-Pesa & PesaPal</p>
             <p className="text-white/60 text-xs">Secure, familiar payment</p>
           </div>
           <div className="flex flex-col items-center gap-1">
@@ -34,9 +35,9 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 px-6 md:px-16 lg:px-32 py-12">
         {/* Brand */}
         <div className="md:col-span-1">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="bg-white text-[#1e3a5f] font-bold text-lg px-3 py-1.5 rounded">
-              Build<span className="text-orange-500">Smart</span>
+          <div className="mb-4">
+            <div className="bg-white rounded inline-block px-2 py-1">
+              <Image src="/buildsmart-logo.jpeg" alt="Build Smart Kenya" width={140} height={42} className="h-10 w-auto" />
             </div>
           </div>
           <p className="text-white/70 text-sm leading-relaxed mb-4">
@@ -96,7 +97,7 @@ const Footer = () => {
             <p className="text-xs text-white/50 mb-2">Accepted Payments</p>
             <div className="flex gap-2">
               <span className="bg-green-600 text-white text-xs px-2 py-1 rounded font-medium">M-Pesa</span>
-              <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded font-medium">PayPal</span>
+              <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded font-medium">PesaPal</span>
               <span className="bg-white/10 text-white text-xs px-2 py-1 rounded font-medium">COD</span>
             </div>
           </div>
