@@ -1,32 +1,45 @@
 import React, { useState, useEffect } from "react";
-import { assets } from "@/assets/assets";
-import Image from "next/image";
+import { useAppContext } from "@/context/AppContext";
 
 const HeaderSlider = () => {
+  const { router } = useAppContext()
+
   const sliderData = [
     {
       id: 1,
-      title: "Experience Pure Sound - Your Perfect Headphones Awaits!",
-      offer: "Limited Time Offer 30% Off",
-      buttonText1: "Buy now",
-      buttonText2: "Find more",
-      imgSrc: assets.header_headphone_image,
+      tag: "Best Seller · Cement & Concrete",
+      title: "Premium Cement Delivered to Your Construction Site",
+      subtitle: "Bamburi, Mombasa Cement, ARM & more — compare prices from verified suppliers across Kenya.",
+      cta1: "Shop Cement",
+      cta2: "Compare Suppliers",
+      href1: "/all-products?category=Cement",
+      bg: "from-[#1e3a5f] to-[#2d5a8e]",
+      emoji: "🏗️",
+      stats: [{ label: "Suppliers", val: "50+" }, { label: "Brands", val: "8" }, { label: "Delivery", val: "24–48h" }],
     },
     {
       id: 2,
-      title: "Next-Level Gaming Starts Here - Discover PlayStation 5 Today!",
-      offer: "Hurry up only few lefts!",
-      buttonText1: "Shop Now",
-      buttonText2: "Explore Deals",
-      imgSrc: assets.header_playstation_image,
+      tag: "High Demand · Steel & Iron",
+      title: "Structural Steel Bars, Mesh & Iron Sheets",
+      subtitle: "Y8 to Y32 deformed bars, BRC mesh, galvanised iron — from certified steel yards.",
+      cta1: "Shop Steel",
+      cta2: "Get a Quote",
+      href1: "/all-products?category=Steel",
+      bg: "from-[#7c2d12] to-[#ea580c]",
+      emoji: "⚙️",
+      stats: [{ label: "Grades", val: "10+" }, { label: "Suppliers", val: "30+" }, { label: "Min Order", val: "1 tonne" }],
     },
     {
       id: 3,
-      title: "Power Meets Elegance - Apple MacBook Pro is Here for you!",
-      offer: "Exclusive Deal 40% Off",
-      buttonText1: "Order Now",
-      buttonText2: "Learn More",
-      imgSrc: assets.header_macbook_image,
+      tag: "Top Quality · Roofing & Tiles",
+      title: "Roofing Sheets, Tiles & Finishing Materials",
+      subtitle: "Mabati, ECC, clay tiles, ceramic tiles, marble — everything to complete your build.",
+      cta1: "Shop Roofing",
+      cta2: "Browse Tiles",
+      href1: "/all-products?category=Roofing",
+      bg: "from-[#14532d] to-[#16a34a]",
+      emoji: "🏠",
+      stats: [{ label: "Tile Types", val: "20+" }, { label: "Roofing", val: "15+" }, { label: "Warranty", val: "Up to 10yr" }],
     },
   ];
 
@@ -35,62 +48,71 @@ const HeaderSlider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % sliderData.length);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [sliderData.length]);
 
-  const handleSlideChange = (index) => {
-    setCurrentSlide(index);
-  };
+  const slide = sliderData[currentSlide];
 
   return (
-    <div className="overflow-hidden relative w-full">
+    <div className="mt-4 rounded-xl overflow-hidden">
       <div
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{
-          transform: `translateX(-${currentSlide * 100}%)`,
-        }}
+        className={`bg-gradient-to-r ${slide.bg} text-white transition-all duration-700`}
       >
-        {sliderData.map((slide, index) => (
-          <div
-            key={slide.id}
-            className="flex flex-col-reverse md:flex-row items-center justify-between bg-[#E6E9F2] py-8 md:px-14 px-5 mt-6 rounded-xl min-w-full"
-          >
-            <div className="md:pl-8 mt-10 md:mt-0">
-              <p className="md:text-base text-orange-600 pb-1">{slide.offer}</p>
-              <h1 className="max-w-lg md:text-[40px] md:leading-[48px] text-2xl font-semibold">
-                {slide.title}
-              </h1>
-              <div className="flex items-center mt-4 md:mt-6 ">
-                <button className="md:px-10 px-7 md:py-2.5 py-2 bg-orange-600 rounded-full text-white font-medium">
-                  {slide.buttonText1}
-                </button>
-                <button className="group flex items-center gap-2 px-6 py-2.5 font-medium">
-                  {slide.buttonText2}
-                  <Image className="group-hover:translate-x-1 transition" src={assets.arrow_icon} alt="arrow_icon" />
-                </button>
-              </div>
+        <div className="px-8 md:px-16 py-10 md:py-14 flex flex-col md:flex-row items-center justify-between gap-8">
+          {/* Text */}
+          <div className="flex-1 space-y-4 max-w-xl">
+            <span className="inline-block bg-white/20 text-xs font-medium px-3 py-1 rounded-full">
+              {slide.tag}
+            </span>
+            <h1 className="text-2xl md:text-4xl font-bold leading-tight">
+              {slide.title}
+            </h1>
+            <p className="text-white/80 text-sm md:text-base leading-relaxed">
+              {slide.subtitle}
+            </p>
+            <div className="flex gap-3 pt-2 flex-wrap">
+              <button
+                onClick={() => router.push(slide.href1)}
+                className="px-6 py-2.5 bg-orange-500 hover:bg-orange-400 text-white font-medium rounded transition"
+              >
+                {slide.cta1}
+              </button>
+              <button
+                onClick={() => router.push('/all-products')}
+                className="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white font-medium rounded border border-white/30 transition"
+              >
+                {slide.cta2}
+              </button>
             </div>
-            <div className="flex items-center flex-1 justify-center">
-              <Image
-                className="md:w-72 w-48"
-                src={slide.imgSrc}
-                alt={`Slide ${index + 1}`}
-              />
+            {/* Stats row */}
+            <div className="flex gap-6 pt-2">
+              {slide.stats.map((s) => (
+                <div key={s.label} className="text-center">
+                  <p className="text-xl font-bold">{s.val}</p>
+                  <p className="text-white/60 text-xs">{s.label}</p>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
+
+          {/* Illustration */}
+          <div className="text-[120px] md:text-[160px] select-none opacity-90">
+            {slide.emoji}
+          </div>
+        </div>
       </div>
 
-      <div className="flex items-center justify-center gap-2 mt-8">
+      {/* Slide indicators */}
+      <div className="flex items-center justify-center gap-2 mt-4">
         {sliderData.map((_, index) => (
-          <div
+          <button
             key={index}
-            onClick={() => handleSlideChange(index)}
-            className={`h-2 w-2 rounded-full cursor-pointer ${
-              currentSlide === index ? "bg-orange-600" : "bg-gray-500/30"
+            onClick={() => setCurrentSlide(index)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              currentSlide === index ? "w-6 bg-orange-500" : "w-2 bg-gray-300"
             }`}
-          ></div>
+          />
         ))}
       </div>
     </div>

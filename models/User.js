@@ -5,9 +5,10 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     imageUrl: { type: String, required: true },
-    cartItems: { type: Object, default: {} }
+    cartItems: { type: Object, default: {} },
+    role: { type: String, enum: ['customer', 'supplier', 'admin'], default: 'customer' }
 }, { minimize: false })
 
-const User = mongoose.models.user || mongoose.model('user',userSchema)
+const User = mongoose.models.user || mongoose.model('user', userSchema)
 
 export default User

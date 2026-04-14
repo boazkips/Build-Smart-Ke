@@ -4,16 +4,15 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const menuItems = [
-    { name: 'Add Product',   path: '/seller',                icon: '➕' },
-    { name: 'My Products',   path: '/seller/product-list',   icon: '📦' },
-    { name: 'Orders',        path: '/seller/orders',         icon: '🛒' },
-    { name: 'Stock',         path: '/seller/stock',          icon: '📊' },
-    { name: 'Onboarding',    path: '/seller/onboarding',     icon: '✅' },
+    { name: 'Overview',    path: '/admin',                  icon: '📊' },
+    { name: 'Suppliers',   path: '/admin/suppliers',        icon: '🏢' },
+    { name: 'Products',    path: '/admin/products',         icon: '📦' },
+    { name: 'Orders',      path: '/admin/orders',           icon: '🛒' },
+    { name: 'Users',       path: '/admin/users',            icon: '👥' },
 ];
 
-const Sidebar = () => {
+const AdminSidebar = () => {
     const pathname = usePathname()
-
     return (
         <div className='md:w-56 w-14 border-r min-h-screen border-gray-200 bg-white py-4 flex flex-col gap-1'>
             {menuItems.map((item) => {
@@ -35,4 +34,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default AdminSidebar;

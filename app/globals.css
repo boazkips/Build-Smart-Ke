@@ -6,14 +6,45 @@
     scroll-behavior: smooth;
 }
 
+/* Build Smart Ke — CSS custom properties */
+:root {
+    --bs-navy: #1e3a5f;
+    --bs-navy-dark: #122640;
+    --bs-orange: #ea580c;
+    --bs-orange-dark: #c2410c;
+    --bs-amber: #d97706;
+    --bs-surface: #f5f6f8;
+    --bs-border: #e2e5ea;
+}
+
 @layer base {
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+        -webkit-appearance: none;
+        margin: 0;
     }
-  }
+}
 
 ::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
+
+/* Build Smart utility classes */
+.bs-navy { background-color: var(--bs-navy); }
+.bs-navy-dark { background-color: var(--bs-navy-dark); }
+.text-bs-navy { color: var(--bs-navy); }
+.border-bs-navy { border-color: var(--bs-navy); }
+
+/* Category card hover */
+.category-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(30, 58, 95, 0.15);
+}
+
+/* Verification badge */
+.badge-verified { @apply bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-medium; }
+.badge-pending  { @apply bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-medium; }
+.badge-rejected { @apply bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-full font-medium; }

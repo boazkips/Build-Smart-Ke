@@ -4,11 +4,12 @@ import { AppContextProvider } from "@/context/AppContext";
 import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const outfit = Outfit({ subsets: ['latin'], weight: ["300", "400", "500"] })
+const outfit = Outfit({ subsets: ['latin'], weight: ["300", "400", "500", "600", "700"] })
 
 export const metadata = {
-  title: "QuickCart - GreatStack",
-  description: "E-Commerce with Next.js ",
+  title: "Build Smart Ke — Kenya's Construction Marketplace",
+  description: "Buy cement, steel, roofing, tiles, plumbing, and all construction materials from verified Kenyan suppliers. Compare prices, order online, delivered to your site.",
+  keywords: "construction materials Kenya, cement suppliers, steel bars, roofing sheets, tiles, plumbing fixtures, building materials Nairobi",
 };
 
 export default function RootLayout({ children }) {
@@ -22,6 +23,6 @@ export default function RootLayout({ children }) {
           </AppContextProvider>
         </body>
       </html>
-      </ClerkProvider>
+    </ClerkProvider>
   );
 }
